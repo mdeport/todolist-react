@@ -9,10 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function todolist() {
   const [items, setItems] = useState([]);
-
-  /*useEffect(() => {
-    localStorage.setItem("items", JSON.stringify(items));
-  }, [items]);*/
+  const [input, setInput] = useState("");
 
   useEffect(() => {
     const loadedItems = localStorage.getItem("items");
@@ -21,18 +18,17 @@ export default function todolist() {
     }
   }, []);
 
-  // Sauvegarder les éléments dans le localStorage chaque fois qu'ils changent
   useEffect(() => {
     localStorage.setItem("items", JSON.stringify(items));
   }, [items]);
 
   function ajoutItem() {
-    const donnée = document.querySelector("input").value;
-    if (donnée !== "") {
-      setItems([...items, donnée]);
+    if (input !== "") {
+      setItems([...items, input]);
     } else {
       alert("veuillez entrer un element");
     }
+    setInput("");
   }
 
   function supprimeritem(index) {
@@ -49,10 +45,10 @@ export default function todolist() {
       </Head>
       <main>
         <h1>Ma todolist</h1>
-        <input type="text" placeholder="ajouter un element"></input>
+        <input type="text" placeholder="ajouter un element" value={input} onChange={(e) => setInput(e.target.value)}></input>
         <button onClick={ajoutItem}>ajouter</button>
         <div className={st.tableauElement}>
-          <ul>
+          <ul className={st.tableauElement}>
             {items.map((item, index) => (
               <li key={index}>
                 {item} <button onClick={() => supprimeritem(index)}>Supprimer</button>
