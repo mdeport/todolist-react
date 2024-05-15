@@ -45,13 +45,20 @@ export default function todolist() {
       </Head>
       <main>
         <h1>Ma todolist</h1>
-        <input type="text" placeholder="ajouter un element" value={input} onChange={(e) => setInput(e.target.value)}></input>
-        <button onClick={ajoutItem}>ajouter</button>
+        <div className={st.containerInputButton}>
+          <input className={st.inputTexte} type="text" placeholder="ajouter un element" value={input} onChange={(e) => setInput(e.target.value)}></input>
+          <button onClick={ajoutItem} className={st.buttonAjout}>
+            ajouter
+          </button>
+        </div>
         <div className={st.tableauElement}>
-          <ul className={st.tableauElement}>
+          <ul className={st.tableauUl}>
             {items.map((item, index) => (
-              <li key={index}>
-                {item} <button onClick={() => supprimeritem(index)}>Supprimer</button>
+              <li className={st.tableauLi} key={index}>
+                {item}{" "}
+                <button className={st.tableauButtonSup} onClick={() => supprimeritem(index)}>
+                  Supprimer
+                </button>
               </li>
             ))}
           </ul>
