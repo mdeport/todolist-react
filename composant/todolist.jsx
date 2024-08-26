@@ -44,7 +44,7 @@ export default function todolist() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1>Ma todolist</h1>
+        <h1>Ma todolist test</h1>
         <div className={st.containerInputButton}>
           <input className={st.inputTexte} type="text" placeholder="ajouter un element" value={input} onChange={(e) => setInput(e.target.value)}></input>
           <button onClick={ajoutItem} className={st.buttonAjout}>
